@@ -2,25 +2,20 @@
 
 namespace App\Providers;
 
+use App\Services\SettingsService;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Vite;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        // Une seule instance par requête : les paramètres ne sont lus qu'une fois.
+        $this->app->singleton(SettingsService::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        // Longueur par defaut des chaines pour les migrations (MySQL < 8 / utf8mb4)
-        \Illuminate\Support\Facades\Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
     }
 }
