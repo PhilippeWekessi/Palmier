@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Pages provisoires : elles seront remplacées par de vrais contrôleurs dans les phases suivantes.
-Route::view('/produits', 'pages.soon', ['title' => 'Nos plants'])->name('products.index');
-Route::view('/produits/{slug}', 'pages.soon', ['title' => 'Fiche produit'])->name('products.show');
+Route::get('/produits', [ProductController::class, 'index'])->name('products.index');
+Route::get('/produits/{product}', [ProductController::class, 'show'])->name('products.show');
+
+// Pages encore provisoires : remplacées phase après phase.
 Route::view('/a-propos', 'pages.soon', ['title' => 'À propos'])->name('about');
 Route::view('/nos-services', 'pages.soon', ['title' => 'Nos services'])->name('services');
 Route::view('/conseils', 'pages.soon', ['title' => 'Conseils agricoles'])->name('posts.index');

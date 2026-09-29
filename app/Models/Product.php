@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class Product extends Model
 {
@@ -99,5 +100,24 @@ class Product extends Model
     public function hasDiscount(): bool
     {
         return ! is_null($this->old_price) && $this->old_price > $this->price;
+    }
+
+    /**
+     * URLs de la galerie : image principale en premier, puis les images
+     * de la table product_images (relation `images`, déjà triée par position).
+     */
+    public function galleryImageUrls(): Collection
+    {
+        $urls = collect();
+
+        if ($this->image) {
+            $urls->push(asset('storage/'.$this->image));
+        }
+
+        foreach ($this->images as $image) {
+            $urls->push(asset('storage/'.$image->path));
+        }
+
+        return $urls->unique()->values();
     }
 }

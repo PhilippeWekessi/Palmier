@@ -72,20 +72,20 @@
             <p class="mt-2 text-gray-600">Un partenaire à vos côtés, de la commande à la plantation.</p>
         </div>
 
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach ([
-                ['🌱', 'Plants de qualité', 'Des plants sélectionnés avec soin pour démarrer votre plantation dans de bonnes conditions.'],
-                ['🤝', 'Accompagnement agricole', "Des conseils pratiques sur la préparation du terrain, la plantation et l'entretien de votre parcelle."],
-                ['🚚', 'Livraison', "Livraison dans les principales villes du Bénin, avec frais et délais annoncés avant la commande."],
-                ['💬', 'Service client', 'Une équipe joignable par téléphone et WhatsApp pour répondre à vos questions.'],
-            ] as [$icon, $title, $text])
-                <div class="card p-6">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-2xl" aria-hidden="true">{{ $icon }}</div>
-                    <h3 class="mt-4 text-lg font-semibold text-gray-900">{{ $title }}</h3>
-                    <p class="mt-2 text-sm leading-relaxed text-gray-600">{{ $text }}</p>
+                <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    @foreach ([
+                        ['Plants de qualité', 'Des plants sélectionnés avec soin pour démarrer votre plantation dans de bonnes conditions.'],
+                        ['Accompagnement agricole', "Des conseils pratiques sur la préparation du terrain, la plantation et l'entretien de votre parcelle."],
+                        ['Livraison', "Livraison dans les principales villes du Bénin, avec frais et délais annoncés avant la commande."],
+                        ['Service client', 'Une équipe joignable par téléphone et WhatsApp pour répondre à vos questions.'],
+                    ] as [$title, $text])
+                        <div class="card p-6">
+                            <div class="mb-4 h-1 w-10 rounded-full bg-gold"></div>
+                            <h3 class="text-lg font-semibold text-gray-900">{{ $title }}</h3>
+                            <p class="mt-2 text-sm leading-relaxed text-gray-600">{{ $text }}</p>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
     </div>
 </section>
 
