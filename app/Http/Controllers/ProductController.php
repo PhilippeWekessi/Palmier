@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -21,26 +20,6 @@ class ProductController extends Controller
             });
         }
 
-        if ($categorySlug = $request->query('category')) {
-            $query->whereHas('category', fn ($q) => $q->where('slug', $categorySlug));
-        }
-
-        if ($variety = $request->query('variety')) {
-            $query->where('variety', $variety);
-        }
-
-        if ($request->query('availability') === 'in_stock') {
-            $query->inStock();
-        }
-
-        if ($request->filled('price_min')) {
-            $query->where('price', '>=', (float) $request->query('price_min'));
-        }
-
-        if ($request->filled('price_max')) {
-            $query->where('price', '<=', (float) $request->query('price_max'));
-        }
-
         match ($request->query('sort')) {
             'price_asc' => $query->orderBy('price'),
             'price_desc' => $query->orderByDesc('price'),
@@ -50,16 +29,7 @@ class ProductController extends Controller
 
         $products = $query->paginate(8)->withQueryString();
 
-        $categories = Category::active()->orderBy('name')->get(['id', 'name', 'slug']);
-
-        $varieties = Product::query()
-            ->active()
-            ->whereNotNull('variety')
-            ->distinct()
-            ->orderBy('variety')
-            ->pluck('variety');
-
-        return view('pages.products.index', compact('products', 'categories', 'varieties'));
+        return view('pages.products.index', compact('products'));
     }
 
     public function show(Product $product): View

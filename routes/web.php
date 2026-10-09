@@ -6,7 +6,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,16 +20,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produits', [ProductController::class, 'index'])->name('products.index');
 Route::get('/produits/{product}', [ProductController::class, 'show'])->name('products.show');
 
-// Pages encore provisoires : remplacées phase après phase.
-Route::view('/a-propos', 'pages.soon', ['title' => 'À propos'])->name('about');
-Route::view('/nos-services', 'pages.soon', ['title' => 'Nos services'])->name('services');
-Route::view('/conseils', 'pages.soon', ['title' => 'Conseils agricoles'])->name('posts.index');
-Route::view('/conseils/{slug}', 'pages.soon', ['title' => 'Article'])->name('posts.show');
-Route::view('/contact', 'pages.soon', ['title' => 'Contact'])->name('contact');
-Route::view('/faq', 'pages.soon', ['title' => 'FAQ'])->name('faq');
+// Pages publiques
+Route::view('/a-propos', 'pages.about', ['title' => 'À propos'])->name('about');
+Route::view('/nos-services', 'pages.services', ['title' => 'Nos services'])->name('services');
+Route::get('/conseils', [PostController::class, 'index'])->name('posts.index');
+Route::get('/conseils/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::view('/faq', 'pages.faq', ['title' => 'FAQ'])->name('faq');
 Route::view('/panier', 'pages.soon', ['title' => 'Panier'])->name('cart.index');
-Route::view('/conditions-generales', 'pages.soon', ['title' => 'Conditions générales'])->name('terms');
-Route::view('/politique-de-confidentialite', 'pages.soon', ['title' => 'Politique de confidentialité'])->name('privacy');
+Route::view('/conditions-generales', 'pages.terms', ['title' => 'Conditions générales'])->name('terms');
+Route::view('/politique-de-confidentialite', 'pages.privacy', ['title' => 'Politique de confidentialité'])->name('privacy');
 
 /*
 | Authentification (visiteurs non connectés uniquement)
