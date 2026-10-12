@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique(); // Ex: EP-2026-000001
-            $table->foreignId('user_id')->constrained()->restrictOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('delivery_zone_id')->nullable()->constrained()->nullOnDelete();
 
             // Informations client au moment de la commande (snapshot)

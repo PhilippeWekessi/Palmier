@@ -29,7 +29,7 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <?php
-    $image = $product->image ? asset('storage/'.$product->image) : null;
+    $image = $product->imageUrl;
     $details = collect([$product->variety, $product->age])->filter()->implode(' · ');
 ?>
 

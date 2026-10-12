@@ -16,8 +16,8 @@
             @foreach ($posts as $post)
                 <article class="card overflow-hidden">
                     <a href="{{ route('posts.show', $post) }}" class="block aspect-[16/9] overflow-hidden bg-primary/5">
-                        @if ($post->image)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="h-full w-full object-cover hover:scale-105 transition duration-300">
+                        @if ($post->imageUrl)
+                            <img src="{{ $post->imageUrl }}" alt="{{ $post->title }}" class="h-full w-full object-cover hover:scale-105 transition duration-300">
                         @else
                             <div class="flex h-full items-center justify-center bg-gradient-to-br from-primary-light/20 to-gold/20 text-4xl">🌿</div>
                         @endif

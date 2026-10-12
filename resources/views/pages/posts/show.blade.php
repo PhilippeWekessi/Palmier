@@ -5,8 +5,8 @@
 @section('content')
 <section class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
     <article class="card overflow-hidden">
-        @if ($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="h-72 w-full object-cover sm:h-96">
+        @if ($post->imageUrl)
+            <img src="{{ $post->imageUrl }}" alt="{{ $post->title }}" class="h-72 w-full object-cover sm:h-96">
         @else
             <div class="flex h-72 items-center justify-center bg-gradient-to-br from-primary-light/20 to-gold/20 text-5xl sm:h-96">🌿</div>
         @endif

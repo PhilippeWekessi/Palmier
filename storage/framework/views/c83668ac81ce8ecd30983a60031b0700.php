@@ -3,7 +3,9 @@
 <?php $site = app('App\Services\SettingsService'); ?>
 
 <?php
-    $heroImage = file_exists(public_path('images/hero-plantation.jpg')) ? asset('images/hero-plantation.jpg') : null;
+    $heroImage = file_exists(public_path('images/hero-plantation.jpg'))
+        ? asset('images/hero-plantation.jpg')
+        : (file_exists(public_path('images/Oil-Palm-Plantation-by-CIFOR.jpg')) ? asset('images/Oil-Palm-Plantation-by-CIFOR.jpg') : null);
     $whatsappUrl = $site->whatsappUrl('Bonjour, je souhaite des informations sur vos plants de palmier à huile.');
 ?>
 
@@ -198,8 +200,8 @@
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <article class="card group flex flex-col overflow-hidden">
                         <a href="<?php echo e(route('posts.show', $post)); ?>" class="block aspect-[16/9] overflow-hidden bg-primary/5">
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($post->image): ?>
-                                <img src="<?php echo e(asset('storage/'.$post->image)); ?>" alt="<?php echo e($post->title); ?>" loading="lazy"
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($post->imageUrl): ?>
+                                <img src="<?php echo e($post->imageUrl); ?>" alt="<?php echo e($post->title); ?>" loading="lazy"
                                      class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
                             <?php else: ?>
                                 <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary-light/20 to-gold/20 text-4xl" aria-hidden="true">🌿</div>

@@ -3,7 +3,9 @@
 @inject('site', 'App\Services\SettingsService')
 
 @php
-    $heroImage = file_exists(public_path('images/hero-plantation.jpg')) ? asset('images/hero-plantation.jpg') : null;
+    $heroImage = file_exists(public_path('images/hero-plantation.jpg'))
+        ? asset('images/hero-plantation.jpg')
+        : (file_exists(public_path('images/Oil-Palm-Plantation-by-CIFOR.jpg')) ? asset('images/Oil-Palm-Plantation-by-CIFOR.jpg') : null);
     $whatsappUrl = $site->whatsappUrl('Bonjour, je souhaite des informations sur vos plants de palmier à huile.');
 @endphp
 
@@ -179,8 +181,8 @@
                 @foreach ($posts as $post)
                     <article class="card group flex flex-col overflow-hidden">
                         <a href="{{ route('posts.show', $post) }}" class="block aspect-[16/9] overflow-hidden bg-primary/5">
-                            @if ($post->image)
-                                <img src="{{ asset('storage/'.$post->image) }}" alt="{{ $post->title }}" loading="lazy"
+                            @if ($post->imageUrl)
+                                <img src="{{ $post->imageUrl }}" alt="{{ $post->title }}" loading="lazy"
                                      class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
                             @else
                                 <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary-light/20 to-gold/20 text-4xl" aria-hidden="true">🌿</div>

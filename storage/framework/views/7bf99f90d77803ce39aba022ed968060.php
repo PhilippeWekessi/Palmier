@@ -16,8 +16,8 @@
             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <article class="card overflow-hidden">
                     <a href="<?php echo e(route('posts.show', $post)); ?>" class="block aspect-[16/9] overflow-hidden bg-primary/5">
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($post->image): ?>
-                            <img src="<?php echo e(asset('storage/' . $post->image)); ?>" alt="<?php echo e($post->title); ?>" class="h-full w-full object-cover hover:scale-105 transition duration-300">
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($post->imageUrl): ?>
+                            <img src="<?php echo e($post->imageUrl); ?>" alt="<?php echo e($post->title); ?>" class="h-full w-full object-cover hover:scale-105 transition duration-300">
                         <?php else: ?>
                             <div class="flex h-full items-center justify-center bg-gradient-to-br from-primary-light/20 to-gold/20 text-4xl">🌿</div>
                         <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>

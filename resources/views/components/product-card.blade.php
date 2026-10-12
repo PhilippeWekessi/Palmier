@@ -1,7 +1,7 @@
 @props(['product'])
 
 @php
-    $image = $product->image ? asset('storage/'.$product->image) : null;
+    $image = $product->imageUrl;
     $details = collect([$product->variety, $product->age])->filter()->implode(' · ');
 @endphp
 

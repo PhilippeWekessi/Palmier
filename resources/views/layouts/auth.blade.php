@@ -51,8 +51,20 @@
         </div>
     @endif
 
-    <main id="contenu" class="flex-1">
-        @yield('content')
+    <main id="contenu" class="flex flex-1 items-center justify-center bg-neutral-50 px-4 py-12 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md">
+            <div class="mb-8 text-center">
+                <a href="{{ route('home') }}" class="inline-flex items-center gap-2 text-2xl font-bold tracking-tight text-primary-dark hover:opacity-90">
+                    <span class="text-3xl">🌴</span>
+                    <span>ELAEIS <span class="text-gold">PRESTIGE</span></span>
+                </a>
+                <p class="mt-2 text-sm text-gray-600">Plants de palmier à huile de qualité supérieure au Bénin</p>
+            </div>
+
+            <div class="card p-6 sm:p-8">
+                @yield('content')
+            </div>
+        </div>
     </main>
 
     <x-footer />

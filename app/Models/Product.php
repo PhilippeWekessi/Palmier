@@ -103,6 +103,26 @@ class Product extends Model
     }
 
     /**
+     * URL publique de l'image principale (gère les chemins images/*, storage/* ou distants).
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        if (! $this->image) {
+            return null;
+        }
+
+        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+            return $this->image;
+        }
+
+        if (str_starts_with($this->image, 'images/')) {
+            return asset($this->image);
+        }
+
+        return asset('storage/'.$this->image);
+    }
+
+    /**
      * URLs de la galerie : image principale en premier, puis les images
      * de la table product_images (relation `images`, déjà triée par position).
      */
@@ -110,12 +130,12 @@ class Product extends Model
     {
         $urls = collect();
 
-        if ($this->image) {
-            $urls->push(asset('storage/'.$this->image));
+        if ($this->imageUrl) {
+            $urls->push($this->imageUrl);
         }
 
         foreach ($this->images as $image) {
-            $urls->push(asset('storage/'.$image->path));
+            $urls->push($image->url);
         }
 
         return $urls->unique()->values();

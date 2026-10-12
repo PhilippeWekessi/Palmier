@@ -6,7 +6,7 @@
 
 return [
 
-    'whatsapp_number' => env('ELAEIS_WHATSAPP_NUMBER', '+22900000000'),
+    'whatsapp_number' => env('ELAEIS_WHATSAPP_NUMBER', '+22901000000'),
     'phone' => env('ELAEIS_PHONE'),
     'contact_email' => env('ELAEIS_CONTACT_EMAIL'),
 

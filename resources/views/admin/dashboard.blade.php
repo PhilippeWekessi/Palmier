@@ -1,17 +1,17 @@
-@extends('layouts.auth')
+@extends('layouts.admin')
 
-@section('title', 'Administration')
+@section('title', 'Tableau de bord')
+@section('page_title', 'Tableau de bord administrateur')
 
 @section('content')
-    <h1 class="mb-2 text-xl font-bold text-primary-dark">Administration</h1>
-    <p class="mb-6 text-sm text-gray-600">Connecté en tant que {{ auth()->user()->name }}.</p>
-
-    <p class="mb-6 rounded-lg bg-neutral-100 p-3 text-sm text-gray-500">
-        Page provisoire. Le vrai dashboard sera construit en Phase 11.
-    </p>
-
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="btn-outline w-full">Se déconnecter</button>
-    </form>
-@endsection
+    <div class="card p-6">
+        <h2 class="text-xl font-bold text-primary-dark">Bienvenue, {{ auth()->user()->name }} 👋</h2>
+        <p class="mt-2 text-sm text-gray-600">Vous êtes connecté sur l'espace d'administration sécurisé d'Elaeis Prestige.</p>
+        
+        <div class="mt-6 rounded-xl bg-primary/5 p-4 ring-1 ring-primary/10">
+            <p class="text-sm text-primary font-medium">
+                Le tableau de bord complet avec métriques, graphiques et indicateurs de performance sera enrichi en Phase 11.
+            </p>
+        </div>
+    </div>
+@endsection

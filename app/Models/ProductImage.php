@@ -20,4 +20,18 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function getUrlAttribute(): string
+    {
+        if (str_starts_with($this->path, 'http://') || str_starts_with($this->path, 'https://')) {
+            return $this->path;
+        }
+
+        if (str_starts_with($this->path, 'images/')) {
+            return asset($this->path);
+        }
+
+        return asset('storage/'.$this->path);
+    }
 }
+
